@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wdnm:Diagram xmlns:wdnm="http://workday.com/studio/editors/notation">
+  <element href="assembly.xml#WorkdayAssembly"/>
+  <visualProperties x="187" y="216">
+    <element href="assembly.xml#StartHere"/>
+  </visualProperties>
+  <visualProperties x="552" y="258">
+    <element href="assembly.xml#AsyncMediation"/>
+  </visualProperties>
+  <visualProperties x="680" y="264">
+    <element href="assembly.xml#Splitter"/>
+  </visualProperties>
+  <visualProperties x="843" y="248">
+    <element href="assembly.xml#AsyncMediation0"/>
+  </visualProperties>
+  <visualProperties x="1014" y="242">
+    <element href="assembly.xml#Aggregator"/>
+  </visualProperties>
+  <visualProperties x="893" y="241">
+    <element href="assembly.xml#AsyncMediation1"/>
+  </visualProperties>
+  <visualProperties x="48" y="318">
+    <element href="assembly.xml#SubRoutine"/>
+  </visualProperties>
+  <visualProperties x="434" y="79">
+    <element href="assembly.xml#CallSubRoutine"/>
+  </visualProperties>
+  <visualProperties x="604" y="92">
+    <element href="assembly.xml#CallSubRoutine0"/>
+  </visualProperties>
+  <visualProperties x="102" y="461">
+    <element href="assembly.xml#SubRoutine0"/>
+  </visualProperties>
+  <visualProperties x="242" y="490">
+    <element href="assembly.xml#GetEventDocuments"/>
+  </visualProperties>
+  <visualProperties x="460" y="477">
+    <element href="assembly.xml#Route"/>
+  </visualProperties>
+  <visualProperties x="613" y="535">
+    <element href="assembly.xml#AsyncMediation2"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#CallWebService"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#AsyncMediation11"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#CallError042"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#erroCatch01"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#ScheduleNotPresent00"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#CallError0410"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#WorkdayOutSoap1"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#AsyncMediation3"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#CallError0510"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#FetchHoldAmount1"/>
+  </visualProperties>
+  <visualProperties>
+    <element href="assembly.xml#CallError051"/>
+  </visualProperties>
+  <connections type="routesTo" sourceAnchorX="0.8907563025210085" sourceAnchorY="1.0" targetAnchorX="0.3006993006993007" targetAnchorY="0.2604166666666667">
+    <source href="assembly.xml#StartHere"/>
+    <target href="assembly.xml#AsyncMediation"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7403846153846154" sourceAnchorY="1.0" targetAnchorX="0.2251655629139073" targetAnchorY="0.75">
+    <source href="assembly.xml#//@beans/@mixed.1/@splitter.0/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.25" targetAnchorX="0.3805309734513274" targetAnchorY="0.4864864864864865">
+    <source href="assembly.xml#AsyncMediation0"/>
+    <target href="assembly.xml#Aggregator"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.27358490566037735" targetAnchorX="0.2781456953642384" targetAnchorY="0.16304347826086957">
+    <source href="assembly.xml#Aggregator"/>
+    <target href="assembly.xml#AsyncMediation1"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.2916666666666667" targetAnchorX="0.2974683544303797" targetAnchorY="0.1891891891891892">
+    <source href="assembly.xml#AsyncMediation"/>
+    <target href="assembly.xml#CallSubRoutine"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.7142857142857143" sourceAnchorY="1.0" targetAnchorX="0.3333333333333333" targetAnchorY="0.1524390243902439">
+    <source href="assembly.xml#SubRoutine"/>
+    <target href="assembly.xml#Splitter"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="1.0" sourceAnchorY="0.2702702702702703" targetAnchorX="0.39156626506024095" targetAnchorY="0.10810810810810811">
+    <source href="assembly.xml#CallSubRoutine"/>
+    <target href="assembly.xml#CallSubRoutine0"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.5815602836879432" sourceAnchorY="1.0" targetAnchorX="0.20207253886010362" targetAnchorY="0.2972972972972973">
+    <source href="assembly.xml#SubRoutine0"/>
+    <target href="assembly.xml#GetEventDocuments"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.7409326424870466" sourceAnchorY="1.0" targetAnchorX="0.7435897435897436" targetAnchorY="0.16417910447761194">
+    <source href="assembly.xml#GetEventDocuments"/>
+    <target href="assembly.xml#Route"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.33653846153846156" sourceAnchorY="1.0" targetAnchorX="0.18543046357615894" targetAnchorY="0.15625">
+    <source href="assembly.xml#//@beans/@mixed.1/@route.0/@subRoute.0"/>
+    <target href="assembly.xml#AsyncMediation2"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="1.0" targetAnchorX="0.3509933774834437" targetAnchorY="0.44565217391304346">
+    <source href="assembly.xml#CallWebService"/>
+    <target href="assembly.xml#AsyncMediation11"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.07086614173228346" targetAnchorX="0.22608695652173913" targetAnchorY="0.07317073170731707">
+    <source href="assembly.xml#AsyncMediation11"/>
+    <target href="assembly.xml#erroCatch01"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.1597222222222222" sourceAnchorY="1.0" targetAnchorX="0.17687074829931973" targetAnchorY="0.40540540540540543">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.45/@mixed.3"/>
+    <target href="assembly.xml#CallError042"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.10569105691056911" targetAnchorX="0.40331491712707185" targetAnchorY="0.40540540540540543">
+    <source href="assembly.xml#erroCatch01"/>
+    <target href="assembly.xml#WorkdayOutSoap1"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8803418803418803" sourceAnchorY="1.0" targetAnchorX="0.601123595505618" targetAnchorY="0.22826086956521738">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.41/@mixed.3"/>
+    <target href="assembly.xml#ScheduleNotPresent00"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.0" sourceAnchorY="0.25" targetAnchorX="0.2517985611510791" targetAnchorY="0.35135135135135137">
+    <source href="assembly.xml#ScheduleNotPresent00"/>
+    <target href="assembly.xml#CallError0410"/>
+  </connections>
+  <connections type="routesResponseTo" sourceAnchorX="0.7292817679558011" sourceAnchorY="1.0" targetAnchorX="0.08391608391608392" targetAnchorY="0.43478260869565216">
+    <source href="assembly.xml#WorkdayOutSoap1"/>
+    <target href="assembly.xml#AsyncMediation3"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="1.0" sourceAnchorY="0.30434782608695654" targetAnchorX="0.12380952380952381" targetAnchorY="0.33070866141732286">
+    <source href="assembly.xml#AsyncMediation3"/>
+    <target href="assembly.xml#FetchHoldAmount1"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.5118110236220472" sourceAnchorY="1.0" targetAnchorX="0.6802721088435374" targetAnchorY="0.24324324324324326">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.33/@mixed.3"/>
+    <target href="assembly.xml#CallError0510"/>
+  </connections>
+  <connections type="routesTo" sourceAnchorX="0.8125" sourceAnchorY="1.0" targetAnchorX="0.7194244604316546" targetAnchorY="0.4594594594594595">
+    <source href="assembly.xml#//@beans/@mixed.1/@mixed.29/@mixed.3"/>
+    <target href="assembly.xml#CallError051"/>
+  </connections>
+  <swimlanes x="59" y="162" name="Swimlane">
+    <elements href="assembly.xml#SubRoutine"/>
+    <elements href="assembly.xml#Splitter"/>
+    <elements href="assembly.xml#AsyncMediation0"/>
+    <elements href="assembly.xml#Aggregator"/>
+    <elements href="assembly.xml#AsyncMediation1"/>
+  </swimlanes>
+  <swimlanes x="68" y="-15" name="Swimlane">
+    <elements href="assembly.xml#StartHere"/>
+    <elements href="assembly.xml#AsyncMediation"/>
+    <elements href="assembly.xml#CallSubRoutine"/>
+    <elements href="assembly.xml#CallSubRoutine0"/>
+  </swimlanes>
+  <swimlanes x="72" y="425" name="Swimlane">
+    <elements href="assembly.xml#SubRoutine0"/>
+    <elements href="assembly.xml#GetEventDocuments"/>
+    <elements href="assembly.xml#Route"/>
+    <elements href="assembly.xml#AsyncMediation2"/>
+  </swimlanes>
+  <swimlanes name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation11"/>
+    <elements href="assembly.xml#CallError042"/>
+  </swimlanes>
+  <swimlanes name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#erroCatch01"/>
+    <elements href="assembly.xml#ScheduleNotPresent00"/>
+    <elements href="assembly.xml#CallError0410"/>
+  </swimlanes>
+  <swimlanes name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#AsyncMediation3"/>
+    <elements href="assembly.xml#CallError0510"/>
+  </swimlanes>
+  <swimlanes name="Swimlane" orientation="VERTICAL">
+    <elements href="assembly.xml#FetchHoldAmount1"/>
+    <elements href="assembly.xml#CallError051"/>
+  </swimlanes>
+  <swimlanes x="78" y="708" name="CallWebService For Hold Installment" closed="true">
+    <elements href="assembly.xml#CallWebService"/>
+    <elements href="#//@swimlanes.3"/>
+    <elements href="#//@swimlanes.4"/>
+    <elements href="assembly.xml#WorkdayOutSoap1"/>
+    <elements href="#//@swimlanes.5"/>
+    <elements href="#//@swimlanes.6"/>
+  </swimlanes>
+</wdnm:Diagram>

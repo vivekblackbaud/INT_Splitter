@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+     xmlns="http://www.springframework.org/schema/beans"
+     xmlns:beans="http://www.springframework.org/schema/beans"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:cc="http://www.capeclear.com/assembly/10"
+     xmlns:cloud="urn:com.workday/esb/cloud/10.0"
+     xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"
+     xmlns:pi="urn:com.workday/picof"
+     xmlns:wd="urn:com.workday/bsvc"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ 
+	<cc:assembly id="WorkdayAssembly" version="2021.10">
+        <cc:workday-in id="StartHere" routes-to="AsyncMediation">
+            <cc:integration-system name="INT_Splitter"/>
+        </cc:workday-in>
+        <cc:async-mediation id="AsyncMediation" routes-to="CallSubRoutine">
+            <cc:steps>
+                <cc:write id="Write">
+                    <cc:message>
+                        <cc:static-file input-file="Second Round.csv"/>
+                    </cc:message>
+                </cc:write>
+                <cc:csv-to-xml id="CsvToXml" colNames="ref1,ref2"/>
+                <cc:eval id="Eval">
+                    <cc:expression>props['file'] ='test'</cc:expression>
+                    <cc:expression>props['seq'] = 0</cc:expression>
+                </cc:eval>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:splitter id="Splitter">
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation0"/>
+            <cc:xml-stream-splitter xpath="/root/row"/>
+        </cc:splitter>
+        <cc:async-mediation id="AsyncMediation0" routes-to="Aggregator">
+            <cc:steps>
+                <cc:xslt-plus id="XsltPlus" url="NewStylesheet.xsl"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:aggregator id="Aggregator" routes-to="AsyncMediation1">
+            <cc:size-batch-strategy batch-size="1"/>
+            <cc:message-content-collater>
+        <cc:separator>\n</cc:separator>
+      </cc:message-content-collater>
+        </cc:aggregator>
+        <cc:async-mediation id="AsyncMediation1">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['seq'] = props['seq'] + 1</cc:expression>
+                    <cc:expression>props['file'] ='file' + props['seq'] + '.csv'</cc:expression>
+                </cc:eval>
+                <cc:store id="Store" createDocumentReference="true" expiresIn="P90D" title="@{props['file']}"/>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-in id="SubRoutine" routes-to="Splitter"/>
+        <cc:local-out id="CallSubRoutine" store-message="none" routes-response-to="CallSubRoutine0" endpoint="vm://INT_Splitter/SubRoutine"/>
+        <cc:local-out id="CallSubRoutine0" store-message="none" endpoint="vm://INT_Splitter/SubRoutine0"/>
+        <cc:local-in id="SubRoutine0" routes-to="GetEventDocuments"/>
+        <cc:local-out id="GetEventDocuments" routes-response-to="Route" endpoint="vm://wcc/GetEventDocuments"><cc:set name="ie.event.wid" value="lp.isSet() ? lp.getIntegrationEventWID() : null"/></cc:local-out>
+        <cc:route id="Route">
+            <cc:doc-iterator variable-name="file"/>
+            <cc:sub-route name="SubRoute" routes-to="AsyncMediation2"/>
+        </cc:route>
+        <cc:async-mediation id="AsyncMediation2">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['filename'] = vars['file'].fileName</cc:expression>
+                </cc:eval>
+                <cc:write id="Write" input="message">
+                    <cc:message>
+                        <cc:text></cc:text>
+                    </cc:message>
+                </cc:write>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                        <cc:text>file name : @{props['filename']}</cc:text>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:local-out id="CallError051" store-message="none" endpoint="vm://INT6172_FINSYS_IT_Revenue_Recognisition_Schedule_Installment_Update_Inbound/ErrorLog">
+            <cc:set name="log.detail" value="context.errorMessage"/>
+            <cc:set name="log.message" value="'Error in FetchHoldAmount'"/>
+            <cc:set name="storage.enabled" value="false"/>
+        </cc:local-out>
+        <cc:async-mediation id="FetchHoldAmount1" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['hold.Installment.Ref.Id'] = empty;</cc:expression>
+                    <cc:expression>props['hold.amount'] = parts[0].xpath('/wd:Revenue_Recognition_Installment_Data/wd:Total_Amount')</cc:expression>
+                    <cc:expression>props['hold.Installment.Ref.Id'] = parts[0].xpath('/wd:Revenue_Recognition_Installment_Data/wd:Revenue_Recognition_Installment_Reference_ID')</cc:expression>
+                    <cc:expression>props['hold.Installment.Ref.Id'].isEmpty() ?   props['rev.sch.hold.present'] = false; : props['rev.sch.hold.present'] = true;</cc:expression>
+                    <cc:expression>props['hold.installment.date'] = parts[0].xpath('/wd:Revenue_Recognition_Installment_Data/wd:Installment_Date')</cc:expression>
+                    <cc:expression>props['hold.start.date'] = parts[0].xpath('/wd:Revenue_Recognition_Installment_Data/wd:From_Date')</cc:expression>
+                    <cc:expression>props['hold.end.date'] = parts[0].xpath('/wd:Revenue_Recognition_Installment_Data/wd:To_Date')</cc:expression>
+                </cc:eval>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:line-separator/>
+                        <cc:text>------------RAAS HOLD INSTALLMENT----------&#xD;
+Installment.Ref.Id : '@{props['hold.Installment.Ref.Id']}'&#xD;
+hold.amount : '@{props['hold.amount']}'&#xD;
+props['rev.sch.hold.present'] : '@{props['rev.sch.hold.present']}'&#xD;
+-------------------------------------------------------</cc:text>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:validate-exp id="ValidateExp">
+                    <cc:expression failure-message="No Rev Rec Schedule with Hold Installment">props['rev.sch.hold.present']</cc:expression>
+                </cc:validate-exp>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="CallError051"/>
+        </cc:async-mediation>
+        <cc:local-out id="CallError0510" store-message="none" endpoint="vm://INT6172_FINSYS_IT_Revenue_Recognisition_Schedule_Installment_Update_Inbound/ErrorLog">
+            <cc:set name="log.detail" value="context.errorMessage"/>
+            <cc:set name="log.message" value="'Error during extract of hold installment'"/>
+            <cc:set name="storage.enabled" value="false"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation3" routes-to="FetchHoldAmount1">
+            <cc:steps>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:text>---------Rev Rec Web Service Response------</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:xslt-plus id="XsltPlus" url="test.xsl"/>
+                <cc:xslt-plus id="XsltPlus0" url="test.xsl"/>
+                <cc:log id="Log0">
+                    <cc:log-message>
+                        <cc:line-separator/>
+                        <cc:text>--------Extracted Hold Installment Message---------</cc:text>
+                        <cc:line-separator/>
+                        <cc:message-content/>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="CallError0510"/>
+        </cc:async-mediation>
+        <cc:workday-out-soap id="WorkdayOutSoap1" routes-response-to="AsyncMediation3" application="Revenue_Management" version="v35.2"/>
+        <cc:local-out id="CallError0410" store-message="none" endpoint="vm://INT6172_FINSYS_IT_Revenue_Recognisition_Schedule_Installment_Update_Inbound/ErrorLog">
+            <cc:set name="log.detail" value="context.errorMessage"/>
+            <cc:set name="log.message" value="'Error before Calling Web Service for Hold Installment'"/>
+            <cc:set name="storage.enabled" value="false"/>
+        </cc:local-out>
+        <cc:async-mediation id="ScheduleNotPresent00" routes-to="CallError0410" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:eval id="Eval">
+                    <cc:expression>props['rev.sch.hold.present'] = false</cc:expression>
+                </cc:eval>
+            </cc:steps>
+        </cc:async-mediation>
+        <cc:async-mediation id="erroCatch01" routes-to="WorkdayOutSoap1" handle-downstream-errors="true">
+            <cc:steps/>
+            <cc:send-error id="SendError" routes-to="ScheduleNotPresent00"/>
+        </cc:async-mediation>
+        <cc:local-out id="CallError042" store-message="none" endpoint="vm://INT6172_FINSYS_IT_Revenue_Recognisition_Schedule_Installment_Update_Inbound/ErrorLog">
+            <cc:set name="log.detail" value="context.errorMessage"/>
+            <cc:set name="log.message" value="'Error During Calling RAAS Report for Hold Installment'"/>
+            <cc:set name="storage.enabled" value="false"/>
+        </cc:local-out>
+        <cc:async-mediation id="AsyncMediation11" routes-to="erroCatch01" handle-downstream-errors="true">
+            <cc:steps>
+                <cc:log id="Log">
+                    <cc:log-message>
+                        <cc:line-separator/>
+                        <cc:text>/******Before Calling Web Service******/&#xD;
+Schedule Id: @{props['schedule.id']}&#xD;
+/******Before Calling Web Service******/</cc:text>
+                        <cc:line-separator/>
+                    </cc:log-message>
+                </cc:log>
+                <cc:write id="Write">
+                    <cc:message>
+                        <cc:text>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;
+&lt;env:Envelope&#xD;
+    xmlns:env=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&#xD;
+    xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;>&#xD;
+    &lt;env:Body>&#xD;
+        &lt;wd:Get_Revenue_Recognition_Schedules_Request&#xD;
+            xmlns:wd=&quot;urn:com.workday/bsvc&quot;&#xD;
+            wd:version=&quot;v35.2&quot;>&#xD;
+            &lt;wd:Request_References>&#xD;
+                &lt;wd:Revenue_Recognition_Schedule_Reference>&#xD;
+                    &lt;wd:ID wd:type=&quot;Revenue_Recognition_Schedule_Reference_ID&quot;>@{props['schedule.id']}&lt;/wd:ID>&#xD;
+                &lt;/wd:Revenue_Recognition_Schedule_Reference>&#xD;
+            &lt;/wd:Request_References>&#xD;
+            &lt;wd:Response_Filter>&#xD;
+                &lt;wd:Page>1&lt;/wd:Page>&#xD;
+                &lt;wd:Count>100&lt;/wd:Count>&#xD;
+            &lt;/wd:Response_Filter>&#xD;
+            &lt;wd:Response_Group>&#xD;
+                &lt;wd:Include_Reference>true&lt;/wd:Include_Reference>&#xD;
+            &lt;/wd:Response_Group>&#xD;
+        &lt;/wd:Get_Revenue_Recognition_Schedules_Request>&#xD;
+    &lt;/env:Body>&#xD;
+&lt;/env:Envelope></cc:text>
+                    </cc:message>
+                </cc:write>
+            </cc:steps>
+            <cc:send-error id="SendError" routes-to="CallError042"/>
+        </cc:async-mediation>
+        <cc:local-in id="CallWebService" routes-to="AsyncMediation11"/>
+	</cc:assembly>
+
+</beans>
