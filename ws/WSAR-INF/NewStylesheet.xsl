@@ -3,7 +3,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="xs"
     version="3.0">
-    <!-- testing feature -->
+    <!-- testing feature1 -->
     <xsl:output method="text" indent="yes"/>
     <xsl:template match="/">
         <xsl:for-each select="row">
