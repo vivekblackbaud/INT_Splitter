@@ -68,7 +68,7 @@
                 </cc:eval>
                 <cc:write id="Write" input="message">
                     <cc:message>
-                        <cc:text></cc:text>
+                        <cc:text>---test--</cc:text>
                     </cc:message>
                 </cc:write>
                 <cc:log id="Log">
