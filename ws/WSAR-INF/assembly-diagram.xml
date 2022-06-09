@@ -189,7 +189,7 @@
     <elements href="assembly.xml#FetchHoldAmount1"/>
     <elements href="assembly.xml#CallError051"/>
   </swimlanes>
-  <swimlanes x="78" y="708" name="CallWebService For Hold Installment" closed="true">
+  <swimlanes x="78" y="708" name="CallWebService For Hold Installment">
     <elements href="assembly.xml#CallWebService"/>
     <elements href="#//@swimlanes.3"/>
     <elements href="#//@swimlanes.4"/>
