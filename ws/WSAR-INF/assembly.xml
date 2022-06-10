@@ -175,6 +175,7 @@ props['rev.sch.hold.present'] : '@{props['rev.sch.hold.present']}'&#xD;
 Schedule Id: @{props['schedule.id']}&#xD;
 /******Before Calling Web Service******/</cc:text>
                         <cc:line-separator/>
+                        <cc:message-content/>
                     </cc:log-message>
                 </cc:log>
                 <cc:write id="Write">
