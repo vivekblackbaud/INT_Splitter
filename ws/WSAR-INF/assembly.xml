@@ -186,7 +186,7 @@ Schedule Id: @{props['schedule.id']}&#xD;
     &lt;env:Body>&#xD;
         &lt;wd:Get_Revenue_Recognition_Schedules_Request&#xD;
             xmlns:wd=&quot;urn:com.workday/bsvc&quot;&#xD;
-            wd:version=&quot;v35.2&quot;>&#xD;
+            wd:version=&quot;v35.3&quot;>&#xD;
             &lt;wd:Request_References>&#xD;
                 &lt;wd:Revenue_Recognition_Schedule_Reference>&#xD;
                     &lt;wd:ID wd:type=&quot;Revenue_Recognition_Schedule_Reference_ID&quot;>@{props['schedule.id']}&lt;/wd:ID>&#xD;
