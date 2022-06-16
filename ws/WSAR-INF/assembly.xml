@@ -76,7 +76,9 @@
                         <cc:line-separator/>
                         <cc:message-content/>
                         <cc:line-separator/>
-                        <cc:text>file name : @{props['filename']}</cc:text>
+                        <cc:text>file name : @{props['filename']}&#xD;
+&#xD;
+---test---</cc:text>
                     </cc:log-message>
                 </cc:log>
             </cc:steps>
