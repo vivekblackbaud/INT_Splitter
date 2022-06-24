@@ -48,6 +48,7 @@
                 <cc:eval id="Eval">
                     <cc:expression>props['seq'] = props['seq'] + 1</cc:expression>
                     <cc:expression>props['file'] ='file' + props['seq'] + '.csv'</cc:expression>
+                    <cc:expression>props['file1'] ='file' + props['seq'] + '.csv'</cc:expression>
                 </cc:eval>
                 <cc:store id="Store" createDocumentReference="true" expiresIn="P120D" title="@{props['file']}"/>
             </cc:steps>
