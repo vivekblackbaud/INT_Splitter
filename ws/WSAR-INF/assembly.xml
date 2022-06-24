@@ -65,6 +65,7 @@
             <cc:steps>
                 <cc:eval id="Eval">
                     <cc:expression>props['filename'] = vars['file'].fileName</cc:expression>
+                    <cc:expression>props['filename2'] = vars['file'].fileName</cc:expression>
                 </cc:eval>
                 <cc:write id="Write" input="message">
                     <cc:message>
