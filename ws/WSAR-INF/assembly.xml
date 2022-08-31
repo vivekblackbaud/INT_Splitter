@@ -70,7 +70,7 @@
                 </cc:eval>
                 <cc:write id="Write" input="message">
                     <cc:message>
-                        <cc:text>---testing write step--</cc:text>
+                        <cc:text>---testing write step2--</cc:text>
                     </cc:message>
                 </cc:write>
                 <cc:log id="Log">
