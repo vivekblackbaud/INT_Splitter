@@ -1,0 +1,74 @@
+<soap:Envelope xmlns:bsvc="urn:com.workday/bsvc" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+			<wsse:UsernameToken>
+				<wsse:Username>ISU_INT035_MDM_Customers_Projects_Inbound@rsm3</wsse:Username>
+				<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">Workday@12345</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<bsvc:Submit_Customer_Request xmlns:bsvc=\"urn:com.workday/bsvc\" bsvc:version=\"v38.0\">
+			<bsvc:Add_Only>true</bsvc:Add_Only>
+			<bsvc:Business_Process_Parameters>
+				<bsvc:Auto_Complete>true</bsvc:Auto_Complete>
+			</bsvc:Business_Process_Parameters>
+			<bsvc:Customer_Data>
+				<bsvc:Customer_ID>8791344</bsvc:Customer_ID>
+				<bsvc:Customer_Reference_ID>8791344</bsvc:Customer_Reference_ID>
+				<bsvc:Customer_Name>415931-Testing DRH</bsvc:Customer_Name>
+				<bsvc:Submit>true</bsvc:Submit>
+				<bsvc:Customer_Category_Reference>
+					<bsvc:ID bsvc:type=\"Customer_Category_ID\">FoundationCustomers</bsvc:ID>
+				</bsvc:Customer_Category_Reference>
+				<bsvc:Payment_Terms_Reference>
+					<bsvc:ID bsvc:type=\"Payment_Terms_ID\">UponReceipt</bsvc:ID>
+				</bsvc:Payment_Terms_Reference>
+				<bsvc:Default_Payment_Type_Reference>
+					<bsvc:ID bsvc:type=\"Payment_Type_ID\">Check</bsvc:ID>
+				</bsvc:Default_Payment_Type_Reference>
+				<bsvc:Business_Entity_Data>
+					<bsvc:Business_Entity_Name>415931-Testing DRH</bsvc:Business_Entity_Name>
+				</bsvc:Business_Entity_Data>
+				<bsvc:Proposed_Customer_Status_Data>
+					<bsvc:Custo mer_Status_Value_Reference><bsvc:ID bsvc:type=\"Business_Entity_Status_Value_ID\">ACTIVE</bsvc:ID>
+				</bsvc:Customer_Status_Value_Reference>
+				<bsvc:Reason_for_Customer_Status_Change_Reference>
+					<bsvc:ID bsvc:type=\"Reason_for_Customer_Status_Change_ID\">OtherReasons</bsvc:ID>
+				</bsvc:Reason_for_Customer_Status_Change_Reference>
+			</bsvc:Proposed_Customer_Status_Data>
+			<bsvc:Currency_Reference>
+				<bsvc:ID bsvc:type=\"Currency_ID\">USD</bsvc:ID>
+			</bsvc:Currency_Reference>
+			<bsvc:Business_Entity_Alternate_Name_Data>
+				<bsvc:Alternate_Name>415931-Testing DRH</bsvc:Alternate_Name>
+				<bsvc:Alternate_Name_Usage_Reference>
+					<bsvc:ID bsvc:type=\"Alternate_Name_Usage_ID\">REFERENCE</bsvc:ID>
+				</bsvc:Alternate_Name_Usage_Reference>
+			</bsvc:Business_Entity_Alternate_Name_Data>
+			<bsvc:Related_Worktags_Data>
+				<bsvc:Related_Worktags_by_Type_Data>
+					<bsvc:Worktag_Type_Reference>
+						<bsvc:ID bsvc:type=\"Accounting_Worktag_Type_ID\">CUSTOM_ORGANIZATION_01</bsvc:ID>
+					</bsvc:Worktag_Type_Reference>
+					<bsvc:Default_Worktag_Data>
+						<bsvc:Default_Worktag_Reference>
+							<bsvc:ID bsvc:type=\"Organization_Reference_ID\">IND111110</bsvc:ID>
+						</bsvc:Default_Worktag_Reference>
+					</bsvc:Default_Worktag_Data>
+				</bsvc:Related_Worktags_by_Type_Data>
+				<bsvc:Related_Worktags_by_Type_Data>
+					<bsvc:Worktag_Type_Reference>
+						<bsvc:ID bsvc:type=\"Accounting_Worktag_Type_ID\">COST_CENTER</bsvc:ID>
+					</bsvc:Worktag_Type_Reference>
+					<bsvc:Default_Worktag_Data>
+						<bsvc:Default_Worktag_Reference>
+							<bsvc:ID bsvc:type=\"Organization_Reference_ID\">CC309</bsvc:ID>
+						</bsvc:Default_Worktag_Reference>
+					</bsvc:Default_Worktag_Data>
+				</bsvc:Related_Worktags_by_Type_Data>
+			</bsvc:Related_Worktags_Data>
+		</bsvc:Customer_Data>
+		</bsvc:Submit_Customer_Request>
+	</soap:Body>
+</soap:Envelope>

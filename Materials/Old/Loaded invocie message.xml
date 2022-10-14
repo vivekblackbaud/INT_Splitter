@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.020/InvoiceDetail.dtd">
+<cXML version="1.0" payloadID="1240598939@curtis1000.coupahost.com" timestamp="2022-09-15T08:10:53.81-04:00">
+	<Header>
+		<From>
+			<Credential domain="NetworkID">
+				<Identity>TaylorPrintImpressionDemoSSO</Identity>
+			</Credential>
+			<Credential domain="PrivateID">
+				<Identity>ISU_INT085_Invoice_Taylor@rsm</Identity>
+			</Credential>
+		</From>
+		<To>
+			<Credential domain="NetworkID">
+				<Identity>RSMWorkDaySsoUserTest</Identity>
+			</Credential>
+		</To>
+		<Sender>
+			<Credential domain="NetworkID">
+				<Identity>RsmDemoSSOUsr</Identity>
+				<SharedSecret>WorkdayPunch12!</SharedSecret>
+			</Credential>
+			<UserAgent>Supplier</UserAgent>
+		</Sender>
+	</Header>
+	<Request deploymentMode="production">
+		<InvoiceDetailRequest>
+			<InvoiceDetailRequestHeader invoiceID="6054889" purpose="standard" operation="new" invoiceDate="2022-09-13T00:00:00">
+				<InvoiceDetailHeaderIndicator/>
+				<InvoiceDetailLineIndicator isAccountingInLine="yes"/>
+				<PaymentTerm payInNumberOfDays="Days for Net Payment"/>
+			</InvoiceDetailRequestHeader>
+			<InvoiceDetailOrder>
+				<InvoiceDetailOrderInfo>
+					<OrderReference orderID="PO-10010155"/>
+					<OrderIDInfo orderID="PO-10010155"/>
+				</InvoiceDetailOrderInfo>
+				<InvoiceDetailItem invoiceLineNumber="1" quantity="2">
+					<UnitOfMeasure>EA</UnitOfMeasure>
+					<UnitPrice>
+						<Money currency="USD">30.92</Money>
+					</UnitPrice>
+					<InvoiceDetailItemReference lineNumber="1">
+						<Description xml:lang="en">COV-RSM-POL POLY COVERS</Description>
+					</InvoiceDetailItemReference>
+					<SubtotalAmount>
+						<Money currency="USD">61.84</Money>
+					</SubtotalAmount>
+				</InvoiceDetailItem>
+				<InvoiceDetailItem invoiceLineNumber="2" quantity="1">
+					<UnitOfMeasure>EA</UnitOfMeasure>
+					<UnitPrice>
+						<Money currency="USD">21.41</Money>
+					</UnitPrice>
+					<InvoiceDetailItemReference lineNumber="2">
+						<Description xml:lang="en">COV-RSM-FINANCIAL / FINANCIAL STATE</Description>
+					</InvoiceDetailItemReference>
+					<SubtotalAmount>
+						<Money currency="USD">21.41</Money>
+					</SubtotalAmount>
+				</InvoiceDetailItem>
+				<InvoiceDetailItem invoiceLineNumber="3" quantity="1">
+					<UnitOfMeasure>EA</UnitOfMeasure>
+					<UnitPrice>
+						<Money currency="USD">12.688</Money>
+					</UnitPrice>
+					<InvoiceDetailItemReference lineNumber="3">
+						<Description xml:lang="en">RSM TAX COVER/ACCO FASTENERS PACKS</Description>
+					</InvoiceDetailItemReference>
+					<SubtotalAmount>
+						<Money currency="USD">12.69</Money>
+					</SubtotalAmount>
+				</InvoiceDetailItem>
+				<InvoiceDetailItem invoiceLineNumber="4" quantity="1">
+					<UnitOfMeasure>EA</UnitOfMeasure>
+					<UnitPrice>
+						<Money currency="USD">22.53</Money>
+					</UnitPrice>
+					<InvoiceDetailItemReference lineNumber="4">
+						<Description xml:lang="en">RSM CAPACITY POCKET FOLDER</Description>
+					</InvoiceDetailItemReference>
+					<SubtotalAmount>
+						<Money currency="USD">22.53</Money>
+					</SubtotalAmount>
+				</InvoiceDetailItem>
+			</InvoiceDetailOrder>
+			<InvoiceDetailSummary>
+				<SubtotalAmount>
+					<Money currency="USD">118.47</Money>
+				</SubtotalAmount>
+				<Tax>
+					<Money currency="USD">8.29</Money>
+					<Description xml:lang="en">Cost of tax, including shipping tax</Description>
+					<TaxDetail purpose="tax" category="sales" percentageRate="7">
+						<TaxableAmount>
+							<Money currency="USD">118.47</Money>
+						</TaxableAmount>
+						<TaxAmount>
+							<Money currency="USD">8.29</Money>
+						</TaxAmount>
+					</TaxDetail>
+				</Tax>
+				<SpecialHandlingAmount>
+					<Money currency="USD"/>
+				</SpecialHandlingAmount>
+				<ShippingAmount>
+					<Money currency="USD">18.75</Money>
+				</ShippingAmount>
+				<NetAmount>
+					<Money currency="USD">145.51</Money>
+				</NetAmount>
+			</InvoiceDetailSummary>
+		</InvoiceDetailRequest>
+	</Request>
+</cXML>

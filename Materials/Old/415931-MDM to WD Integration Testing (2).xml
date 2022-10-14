@@ -1,0 +1,68 @@
+<soap:Envelope xmlns:bsvc="urn:com.workday/bsvc" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+	<soap:Header>
+		<wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+			<wsse:UsernameToken>
+				<wsse:Username>ISU_INT035_MDM_Customers_Projects_Inbound@rsm3</wsse:Username>
+				<wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">Workday@12345</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</soap:Header>
+	<soap:Body>
+		<bsvc:Submit_Project_Request xmlns:bsvc="urn:com.workday/bsvc" bsvc:Add_Only="true" bsvc:version="v38.0">
+			<bsvc:Business_Process_Parameters>
+				<bsvc:Auto_Complete>true</bsvc:Auto_Complete>
+			</bsvc:Business_Process_Parameters>
+			<bsvc:Project_Data>
+				<bsvc:Workday_Project_ID>5000045</bsvc:Workday_Project_ID>
+				<bsvc:Locked_in_Workday>true</bsvc:Locked_in_Workday>
+				<bsvc:Project_Hierarchy_Reference>
+					<bsvc:ID bsvc:type="Project_Hierarchy_ID">CustomerProjects</bsvc:ID>
+				</bsvc:Project_Hierarchy_Reference>
+				<bsvc:Project_Name>8791344: 415931-Testing DRH / 10000: 415931-Testing</bsvc:Project_Name>
+				<bsvc:Inactive>false</bsvc:Inactive>
+				<bsvc:Project_State_Reference>
+					<bsvc:ID bsvc:type="Project_State_ID">PROJECT_STATE_PROJECT</bsvc:ID>
+				</bsvc:Project_State_Reference>
+				<bsvc:Project_Status_Reference>
+					<bsvc:ID bsvc:type="Project_Status_ID">Approved</bsvc:ID>
+				</bsvc:Project_Status_Reference>
+				<bsvc:Start_Date>2022-09-22</bsvc:Start_Date>
+				<bsvc:Currency_Reference>
+					<bsvc:ID bsvc:type="Currency_ID">USD</bsvc:ID>
+				</bsvc:Currency_Reference>
+				<bsvc:Billable>true</bsvc:Billable>
+				<bsvc:Capital>false</bsvc:Capital>
+				<bsvc:Company_Reference>
+					<bsvc:ID bsvc:type="Company_Reference_ID">59000</bsvc:ID>
+				</bsvc:Company_Reference>
+				<bsvc:Customer_Reference>
+					<bsvc:ID bsvc:type="Customer_Reference_ID">8791344</bsvc:ID>
+				</bsvc:Customer_Reference>
+				<bsvc:Worktags_Data>
+					<bsvc:Related_Worktags_by_Type_Data>
+						<bsvc:Worktag_Type_Reference>
+							<bsvc:ID bsvc:type="Accounting_Worktag_Type_ID">COST_CENTER</bsvc:ID>
+						</bsvc:Worktag_Type_Reference>
+						<bsvc:Default_Worktag_Data>
+							<bsvc:Default_Worktag_Reference>
+								<bsvc:ID bsvc:type="Organization_Reference_ID">CC309</bsvc:ID>
+								<bsvc:ID bsvc:type="Cost_Center_Reference_ID">CC309</bsvc:ID>
+							</bsvc:Default_Worktag_Reference>
+						</bsvc:Default_Worktag_Data>
+					</bsvc:Related_Worktags_by_Type_Data>
+					<bsvc:Related_Worktags_by_Type_Data>
+						<bsvc:Worktag_Type_Reference>
+							<bsvc:ID bsvc:type="Accounting_Worktag_Type_ID">CUSTOM_ORGANIZATION_02</bsvc:ID>
+						</bsvc:Worktag_Type_Reference>
+						<bsvc:Default_Worktag_Data>
+							<bsvc:Default_Worktag_Reference>
+								<bsvc:ID bsvc:type="Organization_Reference_ID">Prod851</bsvc:ID>
+								<bsvc:ID bsvc:type="Custom_Organization_Reference_ID">Prod851</bsvc:ID>
+							</bsvc:Default_Worktag_Reference>
+						</bsvc:Default_Worktag_Data>
+					</bsvc:Related_Worktags_by_Type_Data>
+				</bsvc:Worktags_Data>
+			</bsvc:Project_Data>
+		</bsvc:Submit_Project_Request>
+	</soap:Body>
+</soap:Envelope>
